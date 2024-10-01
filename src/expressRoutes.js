@@ -1,30 +1,23 @@
 import { Router } from "express";
 import expressOperationAdapter from "./expressAdapter.js";
+import { makeController } from "./calc-controller.js";
+import { adaptRoute } from "./express-route-adapter.js";
 
-const expressRoutes = Router();
+const router = Router();
+const operationsRouter = Router({ mergeParams: true });
 
-expressRoutes.post('/sum', async (req, res) => {
-  const result = expressOperationAdapter(req);
+const controller = makeController();
 
-  return res.send(result);
+operationsRouter.get('/', adaptRoute(controller));
+
+// operationsRouter.get('/:a/:b', async (req, res) => {
+//   res.send(`gotta do some math with ${req.params.a} and ${req.params.b}`);
+// });
+
+operationsRouter.get('/ping', async (req, res) => {
+  res.send(`So you want to perform a ${req.params.operation} operation huh?`);
 });
 
-expressRoutes.post('/sub', async (req, res) => {
-  const result = expressOperationAdapter(req);
+router.use('/:operation', operationsRouter);
 
-  return res.send(result);
-});
-
-expressRoutes.post('/mult', async (req, res) => {
-  const result = expressOperationAdapter(req);
-
-  return res.send(result);
-});
-
-expressRoutes.post('/div', async (req, res) => {
-  const result = expressOperationAdapter(req);
-
-  return res.send(result);
-});
-
-export default expressRoutes;
+export default router;
