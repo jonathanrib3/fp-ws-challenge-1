@@ -5,7 +5,7 @@ const operationMapper = (operation) => {
     mult: '*',
     div: '/'
   }
-  
+
   return mapper[operation];
 }
 

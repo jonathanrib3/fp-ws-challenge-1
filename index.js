@@ -1,5 +1,5 @@
 import express from "express";
-import expressRoutes from "./src/expressRoutes.js";
+import router from "./src/expressRoutes.js";
 import Fastify from 'fastify'
 import fastifyRoutes from "./src/fastifyRoutes.js";
 
@@ -8,7 +8,7 @@ const expressPort = 3000
 const fastify = Fastify()
 const fastifyPort = 3001
 
-expressApp.use(expressRoutes);
+expressApp.use(router);
 fastify.register(fastifyRoutes);
 
 expressApp.listen(expressPort, () => {
