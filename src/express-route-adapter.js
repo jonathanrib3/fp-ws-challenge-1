@@ -7,8 +7,6 @@ export const adaptRoute = (controller) => {
       operation: req.params.operation,
     };
 
-    console.log(operationRequest);
-
     const operationResult = controller(operationRequest);
 
     res.send(operationResult);
