@@ -1,24 +1,17 @@
-import express from "express";
-import router from "./src/expressRoutes.js";
-import Fastify from 'fastify'
-import fastifyRoutes from "./src/fastifyRoutes.js";
+import { expressApp } from "./src/expressApp.js";
+import { fastifyApp } from "./src/fastifyApp.js";
 
-const expressApp = express()
-const expressPort = 3000
-const fastify = Fastify()
-const fastifyPort = 3001
-
-expressApp.use(router);
-fastify.register(fastifyRoutes);
+const expressPort = 3000;
+const fastifyPort = 3001;
 
 expressApp.listen(expressPort, () => {
-  console.log('Express calculator running on port ', expressPort)
+  console.log('Express server running on port ', expressPort);
 });
 
-fastify.listen({ port: fastifyPort }, (err, address) => {
+fastifyApp.listen({ port: fastifyPort }, (err, address) => {
   if (err) {
-    fastify.log.error(err);
+    console.error(err);
     process.exit(1);
   }
-  console.log(`Server listening at ${address}`);
-})
+  console.log(`Fastify server listening at ${address}`);
+});
