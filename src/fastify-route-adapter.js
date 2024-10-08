@@ -1,5 +1,3 @@
-import getOperationFromUrl from "./getOperationFromUrl.js"
-
 export const adaptRoute = (controller) => {
   return (req, res) => {
     const num1 = Number(req.query.num1);
@@ -12,6 +10,6 @@ export const adaptRoute = (controller) => {
 
     const result = controller(operationRequest);
 
-    return res.send(result);
+    return res.send(result)
   }
 }
