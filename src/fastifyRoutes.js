@@ -6,8 +6,10 @@ const controller = makeController();
 const fastifyRoutes = async (fastify, options) => {
   fastify.get('/:operation', adaptRoute(controller));
 
-  fastify.get('/ping', async (req, res) =>
-    res.send(`So you want to perform a ${req.params.operation} operation huh?`)
+  fastify.get('/:operation/ping', async (req, res) =>
+    res.send({
+      message: `So you want to perform a ${req.params.operation} operation huh?`
+    })
   );
 };
 

@@ -10,7 +10,9 @@ const controller = makeController();
 operationsRouter.get('/', adaptRoute(controller));
 
 operationsRouter.get('/ping', async (req, res) => {
-  res.send(`So you want to perform a ${req.params.operation} operation huh?`);
+  res.json({
+    message: `So you want to perform a ${req.params.operation} operation huh?`
+  });
 });
 
 router.use('/:operation', operationsRouter);
