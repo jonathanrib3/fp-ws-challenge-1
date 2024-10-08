@@ -9,6 +9,6 @@ export const adaptRoute = (controller) => {
 
     const operationResult = controller(operationRequest);
 
-    res.send(operationResult);
+    return res.send(operationResult);
   };
 };

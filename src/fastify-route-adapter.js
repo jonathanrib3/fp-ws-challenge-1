@@ -7,11 +7,11 @@ export const adaptRoute = (controller) => {
     const operationRequest = {
       num1,
       num2,
-      operation: getOperationFromUrl(req.originalUrl)
+      operation: req.params.operation
     };
 
     const result = controller(operationRequest);
 
-    res.send(result);
+    return res.send(result);
   }
 }
