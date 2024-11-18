@@ -1,3 +1,5 @@
+import assert from 'node:assert';
+import { describe, it } from 'node:test'
 import { calculateService } from "../calc-service.js";
 
 describe("calculateService()", () => {
@@ -12,7 +14,7 @@ describe("calculateService()", () => {
     }
 
     it("returns an object containing the correct result, both operands and the requested operation", () => {
-      expect(calculateService({ num1, num2, operation })).toMatchObject(expectedResult);
+      assert.deepStrictEqual(calculateService({ num1, num2, operation }), expectedResult);
     });
   });
 
@@ -27,7 +29,7 @@ describe("calculateService()", () => {
     }
 
     it("returns an object containing the correct result, both operands and the requested operation", () => {
-      expect(calculateService({ num1, num2, operation })).toMatchObject(expectedResult);
+      assert.deepStrictEqual(calculateService({ num1, num2, operation }), expectedResult);
     });
   });
 
@@ -42,7 +44,7 @@ describe("calculateService()", () => {
     }
 
     it("returns an object containing the correct result, both operands and the requested operation", () => {
-      expect(calculateService({ num1, num2, operation })).toMatchObject(expectedResult);
+      assert.deepStrictEqual(calculateService({ num1, num2, operation }), expectedResult);
     });
   });
 
@@ -57,7 +59,7 @@ describe("calculateService()", () => {
     }
 
     it("returns an object containing the correct result, both operands and the requested operation", () => {
-      expect(calculateService({ num1, num2, operation })).toMatchObject(expectedResult);
+      assert.deepStrictEqual(calculateService({ num1, num2, operation }), expectedResult);
     });
   });
 });
