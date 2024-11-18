@@ -1,29 +1,16 @@
-import fastifyOperationAdapter from "./fastifyAdapter.js";
+import { makeController } from "./calc-controller.js";
+import { adaptRoute } from "./fastify-route-adapter.js";
+
+const controller = makeController();
 
 const fastifyRoutes = async (fastify, options) => {
-  fastify.post('/sum', async (req, res) => {
-    const result = fastifyOperationAdapter(req);
+  fastify.get('/:operation', adaptRoute(controller));
 
-    return res.send(result);
-  });
-
-  fastify.post('/sub', async (req, res) => {
-    const result = fastifyOperationAdapter(req);
-
-    return res.send(result);
-  });
-
-  fastify.post('/mult', async (req, res) => {
-    const result = fastifyOperationAdapter(req);
-
-    return res.send(result);
-  });
-
-  fastify.post('/div', async (req, res) => {
-    const result = fastifyOperationAdapter(req);
-
-    return res.send(result);
-  });
-}
+  fastify.get('/:operation/ping', async (req, res) =>
+    res.send({
+      message: `So you want to perform a ${req.params.operation} operation huh?`
+    })
+  );
+};
 
 export default fastifyRoutes;
